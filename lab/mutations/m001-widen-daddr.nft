@@ -1,0 +1,7 @@
+table inet filter {
+  chain forward {
+    type filter hook forward priority 0; policy drop;
+    ct state established,related accept
+    iifname "r-client" ip daddr 10.0.0.0/16 tcp dport { 8080, 9000 } accept
+  }
+}
